@@ -6,7 +6,6 @@ const LINKS = [
   { label: "Features", href: "#features" },
   { label: "Soundboard", href: "#soundboard" },
   { label: "Setup", href: "#setup" },
-  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
   { label: "GitHub", href: "https://github.com/Cruisercc3/termtone", external: true },
 ]

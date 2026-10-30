@@ -5,35 +5,31 @@ import { useState } from "react"
 const FAQS = [
   {
     q: "What actually runs today?",
-    a: "The soundboard on this page. All 12 sounds are synthesised live with the Web Audio API from oscillators, noise and filters, with no audio files. The CLI, the daemon and the output detection described here are the plan. They aren't built yet.",
+    a: "The soundboard on this page and a small command-line tool. The tool hooks into Claude Code, so a sound plays when Claude finishes, when it needs your answer and when you send a prompt. It also wraps any other command and plays done or error from its exit code. I've tested it on Windows 11.",
   },
   {
-    q: "How would TermTone hook into my terminal?",
-    a: "As a small daemon next to your shell. It would read terminal output through a PTY (pseudo-terminal) wrapper, the same mechanism tmux and iTerm2 use, so your terminal works exactly as before, just louder.",
+    q: "How does it know what Claude Code is doing?",
+    a: "It doesn't read your terminal at all. Claude Code has hooks that run a command when a turn ends or when it's waiting on you, and TermTone adds one for each of those. So nothing is guessed from the output. For other commands, termtone run just waits for the exit code.",
   },
   {
-    q: "Does it work with AI CLIs like Claude, GPT, Aider, or Cursor?",
-    a: "That's the plan, and there's no model involved. 'AI phase detection' means spotting the phases of an AI CLI's output with regex patterns and output-stream heuristics: reasoning phases, YES/NO prompts and finished responses, whichever tool you run.",
+    q: "Does it work with other AI CLIs?",
+    a: "Only through termtone run for now. That tells you when the whole run ends, but not when the agent stops to ask you something. Claude Code is the only one I've hooked into properly.",
   },
   {
-    q: "Can I use my own sound files?",
-    a: "That's planned. The idea is a TOML config where any .wav or .mp3 can go on any pad, each with its own volume, pitch and trigger pattern. The soundboard here builds its 12 sounds in code instead.",
+    q: "Can I change the sounds?",
+    a: "You can choose which of the 12 pads plays for each event, or turn one off, in ~/.termtone/config.json. Your own sound files aren't supported yet. The CLI turns the same recipes this page plays into WAV files on your machine, and 11 of the 12 match the browser's output sample for sample.",
   },
   {
     q: "What's the performance overhead?",
-    a: "There are no numbers yet, because the daemon isn't built. The plan is to play cues through CoreAudio on macOS and ALSA or PulseAudio on Linux, and keep the daemon idle until it has something to play.",
+    a: "Claude Code doesn't wait for the sound. Each hook runs in the background and exits in about a fifth of a second. On my Windows laptop the sound starts a little under a second after the event, and most of that is PowerShell starting up to play it.",
   },
   {
-    q: "Is this a subscription? What does lifetime mean?",
-    a: "No subscription. Ever. One payment of $9 and TermTone is yours permanently. Lifetime means every version update, every new sound pack, every new AI trigger — included at no extra cost, forever.",
+    q: "Do I have to pay?",
+    a: "No. Nothing here is for sale. The CLI is free and the code is on GitHub.",
   },
   {
-    q: "Does it support Windows or WSL?",
-    a: "macOS and Linux come first. WSL2 is planned after that, then native Windows through PowerShell.",
-  },
-  {
-    q: "What if I want a refund?",
-    a: "No questions asked refund within 14 days of purchase. Just email the address in your receipt. We'd love to know what didn't work, but you don't have to tell us.",
+    q: "Does it work on macOS, Linux or WSL?",
+    a: "It should, but I haven't tested it there yet. On macOS it plays through afplay, and on Linux through paplay or aplay. WSL needs one of those installed first. Windows 11 is the only place I've run it.",
   },
 ]
 

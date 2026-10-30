@@ -65,7 +65,7 @@ export function NavBar() {
           {[
             { label: "Features", id: "features" },
             { label: "Soundboard", id: "soundboard" },
-            { label: "Pricing", id: "pricing" },
+            { label: "Setup", id: "setup" },
             { label: "FAQ", id: "faq" },
           ].map((link) => (
             <button
@@ -83,12 +83,14 @@ export function NavBar() {
           <span className="text-amber text-xs font-mono hidden sm:block tabular-nums opacity-70">
             {time}
           </span>
-          <button
-            onClick={() => scrollTo("pricing")}
+          <a
+            href="https://github.com/Cruisercc3/termtone#install"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-4 py-1.5 bg-phosphor text-primary-foreground text-xs tracking-widest uppercase font-mono hover:bg-accent transition-all duration-200 box-glow"
           >
-            Get Access
-          </button>
+            Install
+          </a>
         </div>
       </div>
     </nav>

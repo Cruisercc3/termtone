@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 import { FloatingSparks } from "@/components/floating-sparks"
 
+// What `termtone install --claude` really prints, shortened
 const TERMINAL_LINES = [
-  { text: "$ termtone init --profile typewriter", delay: 0 },
-  { text: "> Loading sound pack... [████████████] 100%", delay: 900 },
-  { text: "> AI phase detection: ENABLED", delay: 1600 },
-  { text: "> Keymap bound to: ~/.termtone/config.toml", delay: 2300 },
-  { text: "> 12 custom triggers ready.", delay: 3000 },
-  { text: "✓ Your terminal has a voice now.", delay: 3700 },
+  { text: "$ termtone install --claude", delay: 0 },
+  { text: "> Stop             -> done     chime", delay: 900 },
+  { text: "> Notification     -> waiting  yes", delay: 1600 },
+  { text: "> UserPromptSubmit -> start    think", delay: 2300 },
+  { text: "> Backed up ~/.claude/settings.json", delay: 3000 },
+  { text: "✓ Hooks written. Start a new Claude Code session to hear them.", delay: 3700 },
 ]
 
 export function HeroSection() {
@@ -45,13 +46,13 @@ export function HeroSection() {
       {/* CRT vignette */}
       <div className="absolute inset-0 crt-vignette" />
 
-      {/* Corner decorations */}
-      <div className="absolute top-20 left-6 text-muted-foreground text-xs font-mono opacity-40">
+      {/* Corner decorations, hidden on phones where they ran into the badge */}
+      <div className="absolute top-20 left-6 text-muted-foreground text-xs font-mono opacity-40 hidden sm:block">
         <div>SYS:ONLINE</div>
         <div>MEM:512KB</div>
         <div>PORT:8080</div>
       </div>
-      <div className="absolute top-20 right-6 text-muted-foreground text-xs font-mono opacity-40 text-right">
+      <div className="absolute top-20 right-6 text-muted-foreground text-xs font-mono opacity-40 text-right hidden sm:block">
         <div>TERMTONE OS</div>
         <div>BUILD:2026.1</div>
         <div>AUDIO:READY</div>
@@ -65,7 +66,7 @@ export function HeroSection() {
         <div className="inline-flex items-center gap-2 border border-border px-3 py-1 mb-8 slide-up">
           <span className="w-1.5 h-1.5 rounded-full bg-primary pulse-glow" />
           <span className="text-muted-foreground text-xs tracking-widest uppercase">
-            Sound cues for AI CLIs · concept
+            Sound cues for Claude Code · CLI v0.1
           </span>
         </div>
 
@@ -90,20 +91,18 @@ export function HeroSection() {
 
         {/* Subheadline */}
         <p className="slide-up-d2 text-muted-foreground text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-10 text-balance">
-          Give your terminal a voice. Typewriter sounds, AI phase cues, YES/NO prompts, output triggers — 12 fully customizable audio pads, built for solo devs who ship with style.
+          I wanted to hear when Claude Code finishes or needs me, so TermTone plays a sound for each. It also wraps any other command and plays done or error from its exit code.
         </p>
 
         {/* CTAs */}
         <div className="slide-up-d3 flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <a
-            href="#pricing"
-            onClick={(e) => {
-              e.preventDefault()
-              document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })
-            }}
+            href="https://github.com/Cruisercc3/termtone#install"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 bg-primary text-primary-foreground text-xs tracking-widest uppercase font-mono box-glow-strong hover:bg-accent transition-all duration-300 pulse-glow"
           >
-            Get Lifetime Access — $9
+            Install
           </a>
           <a
             href="#soundboard"
@@ -138,7 +137,7 @@ export function HeroSection() {
             {TERMINAL_LINES.map((line, i) => (
               <div
                 key={i}
-                className={`transition-opacity duration-300 ${
+                className={`whitespace-pre-wrap transition-opacity duration-300 ${
                   visibleLines.includes(i) ? "opacity-100" : "opacity-0"
                 } ${
                   line.text.startsWith("✓")
@@ -163,25 +162,6 @@ export function HeroSection() {
           </div>
           {/* Bottom scanline effect */}
           <div className="absolute bottom-0 left-0 right-0 h-px bg-primary opacity-20" />
-        </div>
-
-        {/* Stats row */}
-        <div className="slide-up-d4 flex items-center justify-center gap-8 mt-10 flex-wrap">
-          {[
-            { value: "12", label: "Sound Triggers",  color: "text-phosphor phosphor-glow-sm" },
-            { value: "$9", label: "Lifetime Access",  color: "text-amber amber-glow" },
-            { value: "AI", label: "Phase Detection",  color: "text-cyan cyan-glow" },
-            { value: "∞",  label: "Free Updates",     color: "text-magenta magenta-glow" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className={`font-mono ${stat.color}`} style={{ fontFamily: "var(--font-display)", fontSize: "2rem" }}>
-                {stat.value}
-              </div>
-              <div className="text-muted-foreground text-xs tracking-widest uppercase mt-0.5">
-                {stat.label}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
 

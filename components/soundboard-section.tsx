@@ -403,8 +403,8 @@ export function SoundboardSection() {
               <span className="text-amber amber-glow">OR YOUR KEYS</span>
             </h2>
             <p className="mt-4 max-w-md text-muted-foreground text-xs leading-relaxed">
-              The CLI on this page is still a concept. This board is the part that runs: 12 sounds
-              synthesised live in your browser with Web Audio, no audio files.
+              These are the 12 sounds the CLI plays. Here your browser builds each one live with Web
+              Audio, no audio files. The CLI renders the same recipes to WAV files on your machine.
             </p>
           </div>
           <div className="flex items-center gap-4">

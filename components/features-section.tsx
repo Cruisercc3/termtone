@@ -149,7 +149,7 @@ export function FeaturesSection() {
             <span className="text-muted-foreground">THE TERMINAL.</span>
           </h2>
           <p className="text-muted-foreground text-xs max-w-xs leading-relaxed md:text-right">
-            Six core audio systems that turn your silent shell into a reactive, sensory-rich coding environment. Every trigger is configurable.
+            Six ideas from the first concept. The Claude Code hooks and termtone run cover the AI phase, prompt, done and error cues today. Keystroke sounds and matching patterns in output are still ideas.
           </p>
         </div>
 
@@ -162,7 +162,7 @@ export function FeaturesSection() {
         {/* Bottom bar */}
         <div className="mt-10 flex items-center gap-4 text-xs text-muted-foreground">
           <span className="w-2 h-2 border border-primary block" />
-          <span className="tracking-widest">ALL FEATURES INCLUDED IN THE $9 LIFETIME LICENSE</span>
+          <span className="tracking-widest">THE CLI IS FREE AND THE CODE IS ON GITHUB</span>
           <div className="h-px flex-1 bg-border" />
         </div>
       </div>

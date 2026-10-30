@@ -5,25 +5,25 @@ import { useEffect, useRef, useState } from "react"
 const STEPS = [
   {
     step: "01",
-    title: "Install in 30 Seconds",
-    desc: "One command sets up the TermTone daemon and hooks it into your shell profile. Works with zsh, bash, and fish.",
-    cmd: "$ termtone install",
+    title: "Build it from the repo",
+    desc: "It isn't on npm yet. Clone the repo, then install and link the CLI from its cli folder. It needs Node 20 or newer and nothing else.",
+    cmd: "$ cd cli && npm install && npm link",
     numColor: "text-phosphor phosphor-glow",
     cmdColor: "text-phosphor",
   },
   {
     step: "02",
-    title: "Configure Your Pads",
-    desc: "Edit the generated TOML config. Assign sounds to triggers, set volume per-pad, and map custom regex patterns to any audio event.",
-    cmd: "$ termtone config --edit",
+    title: "Hook it into Claude Code",
+    desc: "It backs up ~/.claude/settings.json, shows you the change and waits for a yes. After that Claude Code plays a sound when it finishes, when it needs you and when you send a prompt.",
+    cmd: "$ termtone install --claude",
     numColor: "text-amber amber-glow",
     cmdColor: "text-amber",
   },
   {
     step: "03",
-    title: "Launch & Listen",
-    desc: "Start your terminal session as normal. TermTone runs silently in the background and fires audio on every configured event.",
-    cmd: "$ termtone start",
+    title: "Wrap anything else",
+    desc: "Put termtone run in front of any other command. It plays done or error from the exit code and hands the exit code back, so scripts still work.",
+    cmd: "$ termtone run -- npm test",
     numColor: "text-cyan cyan-glow",
     cmdColor: "text-cyan",
   },
@@ -51,7 +51,7 @@ export function HowItWorksSection() {
         <div className="flex items-center gap-4 mb-4">
           <div className="h-px flex-1 bg-border max-w-12" />
           <span className="text-muted-foreground text-xs tracking-[0.3em] uppercase">
-            Setup · planned
+            Setup
           </span>
           <div className="h-px flex-1 bg-border" />
         </div>
@@ -103,17 +103,19 @@ export function HowItWorksSection() {
         {/* Bottom CTA strip */}
         <div className="mt-8 p-6 border border-border bg-card flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <div className="text-foreground text-sm mb-1">Ready to make your terminal come alive?</div>
+            <div className="text-foreground text-sm mb-1">Want to hear them first?</div>
             <div className="text-muted-foreground text-xs">
-              Join devs who ship code that sounds as good as it looks.
+              termtone test plays all twelve pads. They&apos;re the same sounds as the board above.
             </div>
           </div>
-          <button
-            onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
+          <a
+            href="https://github.com/Cruisercc3/termtone"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 bg-primary text-primary-foreground text-xs tracking-widest uppercase font-mono box-glow hover:bg-accent transition-all duration-300 shrink-0"
           >
-            Get TermTone — $9
-          </button>
+            Get the code on GitHub
+          </a>
         </div>
       </div>
     </section>
